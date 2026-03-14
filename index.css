@@ -1,0 +1,252 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* Cyberpunk FAIND Theme */
+  --neon-pink: #ff2d78;
+  --neon-cyan: #ff2d78;
+  --neon-purple: #b400ff;
+  --neon-green: #00ff88;
+  --gradient-cyber: linear-gradient(135deg, #ff2d78 0%, #b400ff 50%, #ff2d78 100%);
+  --radius: 0.5rem;
+  --background: oklch(0.07 0.02 270);
+  --foreground: oklch(0.95 0.02 200);
+  --card: oklch(0.10 0.03 270);
+  --card-foreground: oklch(0.95 0.02 200);
+  --popover: oklch(0.10 0.03 270);
+  --popover-foreground: oklch(0.95 0.02 200);
+  --primary: oklch(0.65 0.28 340);
+  --primary-foreground: oklch(0.95 0.02 200);
+  --secondary: oklch(0.65 0.22 200);
+  --secondary-foreground: oklch(0.07 0.02 270);
+  --muted: oklch(0.15 0.03 270);
+  --muted-foreground: oklch(0.60 0.05 270);
+  --accent: oklch(0.70 0.28 200);
+  --accent-foreground: oklch(0.07 0.02 270);
+  --destructive: oklch(0.65 0.25 25);
+  --destructive-foreground: oklch(0.95 0.02 200);
+  --border: oklch(0.20 0.05 270);
+  --input: oklch(0.15 0.03 270);
+  --ring: oklch(0.65 0.28 340);
+  --sidebar: oklch(0.09 0.025 270);
+  --sidebar-foreground: oklch(0.95 0.02 200);
+  --sidebar-primary: oklch(0.65 0.28 340);
+  --sidebar-primary-foreground: oklch(0.95 0.02 200);
+  --sidebar-accent: oklch(0.15 0.03 270);
+  --sidebar-accent-foreground: oklch(0.95 0.02 200);
+  --sidebar-border: oklch(0.20 0.05 270);
+  --sidebar-ring: oklch(0.65 0.28 340);
+  --chart-1: oklch(0.65 0.28 340);
+  --chart-2: oklch(0.65 0.22 200);
+  --chart-3: oklch(0.70 0.28 200);
+  --chart-4: oklch(0.75 0.25 320);
+  --chart-5: oklch(0.60 0.20 280);
+}
+
+/* Dark mode same as root since FAIND is always dark */
+.dark { --background: oklch(0.07 0.02 270); }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Rajdhani', sans-serif;
+    background-image:
+      linear-gradient(rgba(255, 45, 120, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 45, 120, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+}
+/* ─── FAIND Cyberpunk Utilities ─────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: oklch(0.07 0.02 270); }
+::-webkit-scrollbar-thumb { background: #ff2d78; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b400ff; }
+
+.neon-text-pink { color: #ff2d78; text-shadow: 0 0 10px #ff2d78, 0 0 20px #ff2d78, 0 0 40px #ff2d78; }
+.neon-text-cyan { color: #ff2d78; text-shadow: 0 0 10px #ff2d78, 0 0 20px #ff2d78, 0 0 40px #ff2d78; }
+.neon-text-purple { color: #b400ff; text-shadow: 0 0 10px #b400ff, 0 0 20px #b400ff, 0 0 40px #b400ff; }
+.neon-text-green { color: #00ff88; text-shadow: 0 0 10px #00ff88, 0 0 20px #00ff88; }
+
+.neon-border-pink { border: 1px solid #ff2d78; box-shadow: 0 0 10px #ff2d78, inset 0 0 10px rgba(255,45,120,0.1); }
+.neon-border-cyan { border: 1px solid #ff2d78; box-shadow: 0 0 10px #ff2d78, inset 0 0 10px rgba(0,245,255,0.1); }
+.neon-border-purple { border: 1px solid #b400ff; box-shadow: 0 0 10px #b400ff, inset 0 0 10px rgba(180,0,255,0.1); }
+
+.gradient-text {
+  background: linear-gradient(135deg, #ff2d78 0%, #b400ff 50%, #ff2d78 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cyber-card {
+  background: linear-gradient(135deg, oklch(0.10 0.04 270) 0%, oklch(0.08 0.03 270) 100%);
+  border: 1px solid oklch(0.25 0.08 320);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+.cyber-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #ff2d78, transparent);
+}
+
+.cyber-tag {
+  background: rgba(255, 45, 120, 0.1);
+  border: 1px solid rgba(255, 45, 120, 0.3);
+  color: #ff2d78;
+  font-size: 0.7rem;
+  font-family: 'Share Tech Mono', monospace;
+  padding: 2px 8px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+.font-mono-cyber { font-family: 'Share Tech Mono', monospace; }
+
+@keyframes pulse-neon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.pulse-neon { animation: pulse-neon 2s ease-in-out infinite; }
+
+@keyframes float-up {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+.float-anim { animation: float-up 3s ease-in-out infinite; }
+
+@keyframes scan-line {
+  0% { top: -5%; }
+  100% { top: 105%; }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+.glitch-anim { animation: glitch 0.3s steps(2) infinite; }
+
+@keyframes spin-cyber {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spinner-cyber {
+  width: 36px; height: 36px;
+  border: 2px solid transparent;
+  border-top-color: #ff2d78;
+  border-right-color: #ff2d78;
+  border-radius: 50%;
+  animation: spin-cyber 0.8s linear infinite;
+}
+
+/* Swipe card overlay */
+.like-overlay { background: linear-gradient(135deg, rgba(0,255,136,0.8), rgba(0,245,255,0.4)); }
+.pass-overlay { background: linear-gradient(135deg, rgba(255,45,120,0.8), rgba(180,0,255,0.4)); }
